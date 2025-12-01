@@ -12,19 +12,19 @@ const rateLimiter = require('express-rate-limit')
 
 
 //connect DB
-const connectDB = require('./db/connect') 
+const connectDB = require('../db/connect') 
 
 //authenticateUser
-const authenticateUser = require('./middleware/authentication')
+const authenticateUser = require('../middleware/authentication')
 
 //routers
-const authRouter = require('./routes/authRoute')
-const jobsRouter = require('./routes/jobsRoute')
+const authRouter = require('../routes/authRoute')
+const jobsRouter = require('../routes/jobsRoute')
 
 
 // error handler
-const notFoundMiddleware = require('./middleware/not-found');
-const errorHandlerMiddleware = require('./middleware/error-handler');
+const notFoundMiddleware = require('../middleware/not-found');
+const errorHandlerMiddleware = require('../middleware/error-handler');
 
 app.set('trust proxy', 1)
 app.use(rateLimiter({
@@ -50,9 +50,9 @@ const port = process.env.PORT;
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI)
-    app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
-    );
+    // app.listen(port, () =>
+    //   console.log(`Server is listening on port ${port}...`)
+    // );
   } catch (error) {
     console.log(error);
   }
@@ -60,4 +60,4 @@ const start = async () => {
 
 start();
 
-export default app;
+module.exports = app
