@@ -15,7 +15,7 @@ const rateLimiter = require("express-rate-limit");
 //Swagger 
 const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
-const swaggerDocument = YAML.load('swagger.yaml')
+const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'))
 
 //connect DB
 const connectDB = require("./db/connect");
